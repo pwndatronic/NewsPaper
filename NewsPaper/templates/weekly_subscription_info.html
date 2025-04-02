@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новые статьи за неделю.</title>
+</head>
+<body>
+    <h2>Привет, {{ subscriber.username }}.</h2>
+    <p>Новые статьи за неделю.</p>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h4>Follow <a href="http://127.0.0.1:8000{% url 'post_detail' post.id %}">the link</a> to read full post.</h4>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

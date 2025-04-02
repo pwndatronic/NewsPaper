@@ -1,0 +1,26 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+{{ post_detail.post_title|censor }}
+{% endblock title %}
+
+{% block content %}
+
+<br>
+<h5>{{ post_detail.post_title|censor  }}</h5>
+{{ post_detail.post_creation_datetime|date:'d M Y' }}
+<hr>
+
+{% if post_detail.post_body %}
+    {{ post_detail.post_body|censor }}
+    <hr>
+    <form method="post" action="{% url 'subscribe' post_detail.id %}">
+        {% csrf_token %}
+        <button type="submit">Подписаться</button>
+    </form>
+{% else %}
+    <hr5>Злые смурфы украли новость у читателей!</hr5>
+{% endif %}
+
+{% endblock content %}

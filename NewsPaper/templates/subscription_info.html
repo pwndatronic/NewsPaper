@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>{{ new.post_title }}</h2>
+    <p>{{ new.post_body|truncatewords:50 }}</p>
+    <h4>Follow <a href="http://127.0.0.1:8000{% url 'post_detail' new.id %}">the link</a> to read full post.</h4>
+</body>
+</html>
