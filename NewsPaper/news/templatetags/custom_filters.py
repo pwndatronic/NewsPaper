@@ -1,14 +1,34 @@
 from django import template
 import re
 
+
 register = template.Library()
 
 censor_sign = '*'
 
-'''Все слова, которые нужно цензурировать, начинаются с верхнего или нижнего регистра. \
-   Остальные буквы слов могут быть только в нижнем регистре.'''
+forbidden_words = [
+    'солнышко',
+    'псилоцибин',
+    'легендарный'
+]
+
+
+@register.filter()
+def censor_forbidden_words(text):
+    _text = text.split()
+    result = []
+    for word in _text:
+        if word.lower() in forbidden_words:
+            result.append(word[0] + (censor_sign * (len(word) - 2)) + word[-1])
+        else:
+            result.append(word)
+    return " ".join(result)
+
+
 @register.filter()
 def censor(text):
+    '''Все слова, которые нужно цензурировать, начинаются с верхнего или нижнего регистра. \
+       Остальные буквы слов могут быть только в нижнем регистре.'''
     try:
         if isinstance(text, str) is False:
             raise TypeError

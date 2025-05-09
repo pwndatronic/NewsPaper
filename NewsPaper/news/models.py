@@ -75,6 +75,9 @@ class Post(models.Model):
         super().save(*args, **kwargs)
         cache.delete(f'post-{self.id}')
 
+    def __str__(self):
+        return self.post_title
+
     def like(self):
         self.post_rating += 1
         self.save()

@@ -1,5 +1,7 @@
 .env
 dbPaper.sqlite3
+allposts.json
+allPosts2.json
 .idea/
 venv_/
 cache_files/
